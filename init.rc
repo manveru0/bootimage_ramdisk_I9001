@@ -566,7 +566,7 @@ on boot
     
     # ihryu 2010.07.19
     setprop ro.rfkilldisabled 0
-    class_start default
+    #class_start default
 # +++++++++++++++++++++++++++++++++++++++++++
 
     # for silent reset
@@ -713,6 +713,9 @@ service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-sys
     onrestart restart media
     onrestart restart netd
     onrestart restart sensor-daemon
+    
+service initd /system/bin/logwrapper /system/xbin/busybox run-parts /system/etc/init.d
+    oneshot
 
 service media /system/bin/mediaserver
     user media
